@@ -8,6 +8,7 @@ import com.example.demo.model.admin.userManagement.retrieveUser.RetrieveUsersRes
 import com.example.demo.repository.UserMstRepository;
 import com.example.demo.repository.customRepository.RoleMstRepository;
 import com.example.demo.service.adminService.userManagement.UserManagementService;
+import com.example.demo.utils.response.ResponseHandler;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -39,7 +40,7 @@ public class UserManagementServiceImpl implements UserManagementService {
         user.setFirstName(requestBody.getFirstName());
         user.setLastName(requestBody.getLastName());
         UserMst savedUser = userRepository.save(user);
-        return null;
+        return ResponseHandler.success(savedUser, "Success", "200");
     }
 
     @Override
@@ -61,7 +62,7 @@ public class UserManagementServiceImpl implements UserManagementService {
                     createdOn, createdBy, lastUpdatedOn, lastUpdatedBy, activeStatus));
         }
         resultModel.sort((a,b) -> a.getUserName().compareToIgnoreCase(b.getUserName()));
-        return ResponseEntity.ok(resultModel);
+        return ResponseHandler.success(resultModel, "Success", "200");
     }
 
 
