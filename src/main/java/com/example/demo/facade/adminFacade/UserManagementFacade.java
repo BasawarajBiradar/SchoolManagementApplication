@@ -10,6 +10,4 @@ public interface UserManagementFacade {
     ResponseEntity<?> facadeEntryForRegisterUser(RegisterUserRequestBody requestBody);
 
     ResponseEntity<?> facadeEntryPointForRetrieveUsers(RetrieveUsersRequestBody requestBody);
-
-    ResponseEntity<?> facadeEntryPointForLogin(LoginRequestRequestModel request);
 }

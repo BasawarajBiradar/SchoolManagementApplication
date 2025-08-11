@@ -1,15 +1,9 @@
 package com.example.demo.controller.adminController;
 
-import com.example.demo.entity.UserMst;
 import com.example.demo.facade.adminFacade.UserManagementFacade;
-import com.example.demo.model.admin.userManagement.login.LoginRequestRequestModel;
 import com.example.demo.model.admin.userManagement.registerUser.RegisterUserRequestBody;
 import com.example.demo.model.admin.userManagement.retrieveUser.RetrieveUsersRequestBody;
-import com.example.demo.repository.UserMstRepository;
-import com.example.demo.security.JwtUtil;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Collections;
 
 @RestController
-@RequestMapping("/user-management")
+@RequestMapping("/api/user-management")
 public class UserManagementController {
 
     private final UserManagementFacade userManagementFacade;
@@ -35,11 +29,6 @@ public class UserManagementController {
     @PostMapping("/get-users")
     private ResponseEntity<?> retrieveUsers(@RequestBody RetrieveUsersRequestBody requestBody) {
         return this.userManagementFacade.facadeEntryPointForRetrieveUsers(requestBody);
-    }
-
-    @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody LoginRequestRequestModel request) {
-        return this.userManagementFacade.facadeEntryPointForLogin(request);
     }
 
 }

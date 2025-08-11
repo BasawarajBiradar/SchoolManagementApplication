@@ -10,7 +10,5 @@ public interface UserManagementService {
     ResponseEntity<?> serviceEntryPointForRegisterUser(RegisterUserRequestBody requestBody);
 
     ResponseEntity<?> serviceEntryPointForRetrieveUsers(RetrieveUsersRequestBody requestBody);
-
-    ResponseEntity<?> serviceEntryPointForLogin(LoginRequestRequestModel request);
 }
 

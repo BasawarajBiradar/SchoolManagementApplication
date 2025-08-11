@@ -28,9 +28,4 @@ public class UserManagementFacadeImpl implements UserManagementFacade {
         // add validation if required.
         return this.userManagementService.serviceEntryPointForRetrieveUsers(requestBody);
     }
-
-    @Override
-    public ResponseEntity<?> facadeEntryPointForLogin(LoginRequestRequestModel request) {
-        return this.userManagementService.serviceEntryPointForLogin(request);
-    }
 }
