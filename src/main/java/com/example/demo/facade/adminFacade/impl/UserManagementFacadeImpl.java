@@ -1,6 +1,7 @@
 package com.example.demo.facade.adminFacade.impl;
 
 import com.example.demo.facade.adminFacade.UserManagementFacade;
+import com.example.demo.model.admin.userManagement.login.LoginRequestRequestModel;
 import com.example.demo.model.admin.userManagement.registerUser.RegisterUserRequestBody;
 import com.example.demo.model.admin.userManagement.retrieveUser.RetrieveUsersRequestBody;
 import com.example.demo.service.adminService.userManagement.UserManagementService;
@@ -26,5 +27,10 @@ public class UserManagementFacadeImpl implements UserManagementFacade {
     public ResponseEntity<?> facadeEntryPointForRetrieveUsers(RetrieveUsersRequestBody requestBody) {
         // add validation if required.
         return this.userManagementService.serviceEntryPointForRetrieveUsers(requestBody);
+    }
+
+    @Override
+    public ResponseEntity<?> facadeEntryPointForLogin(LoginRequestRequestModel request) {
+        return this.userManagementService.serviceEntryPointForLogin(request);
     }
 }

@@ -1,16 +1,20 @@
 package com.example.demo.service.adminService.userManagement.impl;
 
 import com.example.demo.entity.UserMst;
+import com.example.demo.model.admin.userManagement.login.LoginRequestRequestModel;
 import com.example.demo.model.admin.userManagement.registerUser.RegisterUserRequestBody;
 import com.example.demo.model.admin.userManagement.retrieveUser.RetrieveUsersRequestBody;
 import com.example.demo.model.admin.userManagement.retrieveUser.RetrieveUsersResultModel;
 import com.example.demo.repository.UserMstRepository;
+import com.example.demo.security.JwtUtil;
 import com.example.demo.service.adminService.userManagement.UserManagementService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -18,9 +22,11 @@ public class UserManagementServiceImpl implements UserManagementService {
 
     private final UserMstRepository userRepository;
     private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+    private final JwtUtil jwtUtil;
 
-    public UserManagementServiceImpl(UserMstRepository userRepository) {
+    public UserManagementServiceImpl(UserMstRepository userRepository, JwtUtil jwtUtil) {
         this.userRepository = userRepository;
+        this.jwtUtil = jwtUtil;
     }
 
 
@@ -54,6 +60,20 @@ public class UserManagementServiceImpl implements UserManagementService {
         }
         resultModel.sort((a,b) -> a.getUserName().compareToIgnoreCase(b.getUserName()));
         return ResponseEntity.ok(resultModel);
+    }
+
+    @Override
+    public ResponseEntity<?> serviceEntryPointForLogin(LoginRequestRequestModel request) {
+        UserMst user = userRepository.findByUserName(request.getUsername())
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials");
+        }
+
+        String token = jwtUtil.generateToken(user.getUserName(), user.getRole().getRole());
+
+        return ResponseEntity.ok(Collections.singletonMap("token", token));
     }
 
 }
