@@ -1,4 +1,4 @@
-package com.example.demo.model.admin.userManagement.retrieveUser;
+package com.example.demo.model.admin.userManagement.registerUser;
 
 import lombok.Data;
 

@@ -1,8 +1,8 @@
 package com.example.demo.controller.adminController;
 
 import com.example.demo.facade.adminFacade.UserManagementFacade;
-import com.example.demo.model.admin.userManagement.retrieveUser.RegisterUserRequestBody;
-import org.springframework.http.HttpRequest;
+import com.example.demo.model.admin.userManagement.registerUser.RegisterUserRequestBody;
+import com.example.demo.model.admin.userManagement.retrieveUser.RetrieveUsersRequestBody;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -22,5 +22,10 @@ public class UserManagementController {
     @PostMapping("/register")
     private ResponseEntity<?> registerUser(@RequestBody RegisterUserRequestBody requestBody) {
         return this.userManagementFacade.facadeEntryForRegisterUser( requestBody);
+    }
+
+    @PostMapping("/get-users")
+    private ResponseEntity<?> retrieveUsers(@RequestBody RetrieveUsersRequestBody requestBody) {
+        return this.userManagementFacade.facadeEntryPointForRetrieveUsers(requestBody);
     }
 }
