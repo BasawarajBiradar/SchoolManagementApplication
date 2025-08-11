@@ -19,7 +19,6 @@ public class UserManagementFacadeImpl implements UserManagementFacade {
 
     @Override
     public ResponseEntity<?> facadeEntryForRegisterUser(RegisterUserRequestBody requestBody) {
-        // add validation
         return this.userManagementService.serviceEntryPointForRegisterUser( requestBody);
     }
 

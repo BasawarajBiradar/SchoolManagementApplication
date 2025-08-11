@@ -48,4 +48,9 @@ public class UserMst {
 
     @Column(name = "active_status")
     private boolean activeStatus;
+
+    @Column(name = "first_name")
+    private String firstName;
+    @Column(name = "last_name")
+    private String lastName;
 }

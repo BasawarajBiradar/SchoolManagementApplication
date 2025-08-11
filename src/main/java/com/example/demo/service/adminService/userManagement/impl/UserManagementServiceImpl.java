@@ -1,10 +1,12 @@
 package com.example.demo.service.adminService.userManagement.impl;
 
+import com.example.demo.entity.RoleMst;
 import com.example.demo.entity.UserMst;
 import com.example.demo.model.admin.userManagement.registerUser.RegisterUserRequestBody;
 import com.example.demo.model.admin.userManagement.retrieveUser.RetrieveUsersRequestBody;
 import com.example.demo.model.admin.userManagement.retrieveUser.RetrieveUsersResultModel;
 import com.example.demo.repository.UserMstRepository;
+import com.example.demo.repository.customRepository.RoleMstRepository;
 import com.example.demo.service.adminService.userManagement.UserManagementService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -19,9 +21,11 @@ public class UserManagementServiceImpl implements UserManagementService {
 
     private final UserMstRepository userRepository;
     private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+    private final RoleMstRepository roleMstRepository;
 
-    public UserManagementServiceImpl(UserMstRepository userRepository) {
+    public UserManagementServiceImpl(UserMstRepository userRepository, RoleMstRepository roleMstRepository) {
         this.userRepository = userRepository;
+        this.roleMstRepository = roleMstRepository;
     }
 
 
@@ -30,8 +34,11 @@ public class UserManagementServiceImpl implements UserManagementService {
         UserMst user = new UserMst();
         user.setUserName(requestBody.getUserName());
         user.setPassword(passwordEncoder.encode(requestBody.getPassword())); // hash here
-        userRepository.save(user);
-
+        user.setRole(roleMstRepository.findById(requestBody.getRoleId()).orElseThrow());
+        user.setEmailId(requestBody.getEmailId());
+        user.setFirstName(requestBody.getFirstName());
+        user.setLastName(requestBody.getLastName());
+        UserMst savedUser = userRepository.save(user);
         return null;
     }
 
