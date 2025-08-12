@@ -5,6 +5,7 @@ import com.example.demo.model.admin.userManagement.login.LoginRequestRequestMode
 import com.example.demo.model.admin.userManagement.registerUser.RegisterUserRequestBody;
 import com.example.demo.model.admin.userManagement.retrieveUser.RetrieveUsersRequestBody;
 import com.example.demo.service.adminService.userManagement.UserManagementService;
+import jakarta.validation.ValidationException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
@@ -19,6 +20,9 @@ public class UserManagementFacadeImpl implements UserManagementFacade {
 
     @Override
     public ResponseEntity<?> facadeEntryForRegisterUser(RegisterUserRequestBody requestBody) {
+        if (requestBody.getRoleId() == null)
+            throw new ValidationException("Role Id : role id is required");
+
         return this.userManagementService.serviceEntryPointForRegisterUser( requestBody);
     }
 

@@ -1,6 +1,7 @@
 package com.example.demo.utils.globalExceptionHandler;
 
 import com.example.demo.utils.response.ResponseHandler;
+import jakarta.validation.ValidationException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -19,7 +20,12 @@ public class GlobalExceptionHandler {
                 .map(err -> err.getField() + ": " + err.getDefaultMessage())
                 .toList();
 
-        return ResponseHandler.success(errors, "ValidationError", "400");
+        return ResponseHandler.error(errors, "ValidationError", "400");
+    }
+
+    @ExceptionHandler(ValidationException.class)
+    public ResponseEntity<?> handleValidationErrors(ValidationException ex) {
+        return ResponseHandler.error(ex.getMessage(), "ValidationError", "400");
     }
 }
 
