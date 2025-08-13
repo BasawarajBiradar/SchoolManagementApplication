@@ -1,12 +1,11 @@
 package com.example.demo.service.adminService.userManagement.impl;
 
-import com.example.demo.entity.RoleMst;
 import com.example.demo.entity.UserMst;
 import com.example.demo.model.admin.userManagement.registerUser.RegisterUserRequestBody;
 import com.example.demo.model.admin.userManagement.retrieveUser.RetrieveUsersRequestBody;
 import com.example.demo.model.admin.userManagement.retrieveUser.RetrieveUsersResultModel;
 import com.example.demo.repository.UserMstRepository;
-import com.example.demo.repository.customRepository.RoleMstRepository;
+import com.example.demo.repository.RoleMstRepository;
 import com.example.demo.service.adminService.userManagement.UserManagementService;
 import com.example.demo.utils.response.ResponseHandler;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +13,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 @Service
