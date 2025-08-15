@@ -30,6 +30,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<?> handleGenericException(Exception ex) {
+        ex.printStackTrace();
         return ResponseHandler.error(ex.getMessage(), "Internal Server Error", "500");
     }
 }
