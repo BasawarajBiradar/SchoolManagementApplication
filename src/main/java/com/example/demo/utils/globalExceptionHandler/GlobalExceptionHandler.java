@@ -27,5 +27,10 @@ public class GlobalExceptionHandler {
     public ResponseEntity<?> handleValidationErrors(ValidationException ex) {
         return ResponseHandler.error(ex.getMessage(), "ValidationError", "400");
     }
+
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<?> handleGenericException(Exception ex) {
+        return ResponseHandler.error(ex.getMessage(), "Internal Server Error", "500");
+    }
 }
 
