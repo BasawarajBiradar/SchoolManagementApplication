@@ -32,7 +32,7 @@ public class UserManagementController {
         return this.userManagementFacade.facadeEntryForRegisterUser( requestBody);
     }
 
-    @PreAuthorize("hasRole('Admin')")
+    @PreAuthorize("hasRole('SUPER_ADMIN')")
     @PostMapping("/get-users")
     private ResponseEntity<?> retrieveUsers(@RequestBody RetrieveUsersRequestBody requestBody) {
         return this.userManagementFacade.facadeEntryPointForRetrieveUsers(requestBody);
