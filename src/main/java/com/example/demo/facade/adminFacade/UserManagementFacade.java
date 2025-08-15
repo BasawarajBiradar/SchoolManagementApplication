@@ -1,6 +1,5 @@
 package com.example.demo.facade.adminFacade;
 
-import com.example.demo.model.admin.userManagement.login.LoginRequestRequestModel;
 import com.example.demo.model.admin.userManagement.registerUser.RegisterUserRequestBody;
 import com.example.demo.model.admin.userManagement.retrieveUser.RetrieveUsersRequestBody;
 import org.springframework.http.ResponseEntity;

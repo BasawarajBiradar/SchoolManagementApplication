@@ -1,6 +1,6 @@
-package com.example.demo.repository.customRepository.impl;
+package com.example.demo.repository.userManagement.customRepository.impl;
 
-import com.example.demo.repository.customRepository.UserMstCustomRepository;
+import com.example.demo.repository.userManagement.customRepository.UserMstCustomRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Query;

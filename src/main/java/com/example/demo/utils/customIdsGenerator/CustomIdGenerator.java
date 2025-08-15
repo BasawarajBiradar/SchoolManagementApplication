@@ -1,8 +1,7 @@
-package com.example.demo.utils;
+package com.example.demo.utils.customIdsGenerator;
 
 import org.hibernate.engine.spi.SharedSessionContractImplementor;
 import org.hibernate.id.IdentifierGenerator;
-import org.hibernate.Session;
 
 import java.io.Serializable;
 

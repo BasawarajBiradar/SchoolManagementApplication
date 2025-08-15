@@ -1,7 +1,6 @@
 package com.example.demo.facade.adminFacade.impl;
 
 import com.example.demo.facade.adminFacade.UserManagementFacade;
-import com.example.demo.model.admin.userManagement.login.LoginRequestRequestModel;
 import com.example.demo.model.admin.userManagement.registerUser.RegisterUserRequestBody;
 import com.example.demo.model.admin.userManagement.retrieveUser.RetrieveUsersRequestBody;
 import com.example.demo.service.adminService.userManagement.UserManagementService;

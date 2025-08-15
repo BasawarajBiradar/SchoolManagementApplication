@@ -1,4 +1,4 @@
-package com.example.demo.entity;
+package com.example.demo.entity.userManagement;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -17,7 +17,7 @@ public class UserMst {
 
     @Id
     @GeneratedValue(generator = "custom-id")
-    @GenericGenerator(name = "custom-id", strategy = "com.example.demo.utils.CustomIdGenerator")
+    @GenericGenerator(name = "custom-id", strategy = "com.example.demo.utils.customIdsGenerator.CustomIdGenerator")
     private String id;
 
     @Column(name = "user_name", unique = true, nullable = false)

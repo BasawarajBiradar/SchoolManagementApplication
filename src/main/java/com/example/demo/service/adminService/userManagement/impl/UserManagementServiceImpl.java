@@ -1,11 +1,11 @@
 package com.example.demo.service.adminService.userManagement.impl;
 
-import com.example.demo.entity.UserMst;
+import com.example.demo.entity.userManagement.UserMst;
 import com.example.demo.model.admin.userManagement.registerUser.RegisterUserRequestBody;
 import com.example.demo.model.admin.userManagement.retrieveUser.RetrieveUsersRequestBody;
 import com.example.demo.model.admin.userManagement.retrieveUser.RetrieveUsersResultModel;
-import com.example.demo.repository.UserMstRepository;
-import com.example.demo.repository.RoleMstRepository;
+import com.example.demo.repository.userManagement.UserMstRepository;
+import com.example.demo.repository.userManagement.RoleMstRepository;
 import com.example.demo.service.adminService.userManagement.UserManagementService;
 import com.example.demo.utils.response.ResponseHandler;
 import org.springframework.http.ResponseEntity;
@@ -62,9 +62,10 @@ public class UserManagementServiceImpl implements UserManagementService {
         }
         resultModel.sort((a,b) -> a.getUserName().compareToIgnoreCase(b.getUserName()));
         return ResponseHandler.success(resultModel, "Success", "200");
-//        List<UserMst> resultList = this.userRepository.findAll();//(requestBody.getUserId());
-//        return ResponseHandler.success(resultList, "Success", "200");
-
+        /***
+         * List<UserMst> resultList = this.userRepository.findAll();//(requestBody.getUserId());
+        return ResponseHandler.success(resultList, "Success", "200");
+         **/
     }
 
 

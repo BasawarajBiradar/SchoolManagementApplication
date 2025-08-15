@@ -1,6 +1,4 @@
-package com.example.demo.repository.customRepository;
-
-import com.example.demo.entity.UserMst;
+package com.example.demo.repository.userManagement.customRepository;
 
 import java.util.List;
 

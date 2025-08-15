@@ -1,7 +1,7 @@
-package com.example.demo.repository;
+package com.example.demo.repository.userManagement;
 
-import com.example.demo.entity.UserMst;
-import com.example.demo.repository.customRepository.UserMstCustomRepository;
+import com.example.demo.entity.userManagement.UserMst;
+import com.example.demo.repository.userManagement.customRepository.UserMstCustomRepository;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

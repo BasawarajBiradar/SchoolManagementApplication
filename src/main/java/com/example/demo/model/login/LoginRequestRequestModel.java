@@ -1,4 +1,4 @@
-package com.example.demo.model.admin.userManagement.login;
+package com.example.demo.model.login;
 
 import lombok.Data;
 
