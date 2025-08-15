@@ -17,9 +17,9 @@ public class UserMstCustomRepositoryImpl implements UserMstCustomRepository {
     @Override
     public List<Object[]> retrieveUsersData(Integer userId) {
         StringBuilder sql = new StringBuilder();
-        sql.append("SELECT user_name, password, role_id, email_id, created_on, ")
+        sql.append("SELECT user_name, password, role.role, email_id, created_on, ")
                         .append("created_by, last_updated_on, last_updated_by, active_status ");
-        sql.append("FROM user_mst users WHERE 1 = 1 ");
+        sql.append("FROM user_mst users LEFT JOIN role_mst role ON role.id = users.role_id WHERE 1 = 1 ");
         if (userId != null)
             sql.append("AND users.id = :userId ");
         Query query = em.createNativeQuery(sql.toString());

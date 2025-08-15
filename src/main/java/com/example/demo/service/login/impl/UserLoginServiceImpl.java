@@ -3,10 +3,11 @@ package com.example.demo.service.login.impl;
 import com.example.demo.entity.userManagement.UserMst;
 import com.example.demo.model.login.LoginRequestRequestModel;
 import com.example.demo.model.login.retrieveUserProfile.RetrieveUserProfileRequestRequestModel;
+import com.example.demo.model.login.retrieveUserProfile.RetrieveUserProfileResultModel;
 import com.example.demo.repository.userManagement.UserMstRepository;
 import com.example.demo.security.JwtUtil;
 import com.example.demo.service.login.UserLoginService;
-import com.example.demo.utils.CommonMethods;
+import com.example.demo.utils.commonMethods.ExtractUserId;
 import com.example.demo.utils.response.ResponseHandler;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.ResponseEntity;
@@ -21,14 +22,14 @@ public class UserLoginServiceImpl implements UserLoginService {
     private final PasswordEncoder passwordEncoder;
     private final JwtUtil jwtUtil;
     private final UserMstRepository userRepository;
-    private final CommonMethods commonMethods;
+    private final ExtractUserId extractUserId;
 
-    public UserLoginServiceImpl (UserMstRepository userMstRepository, CommonMethods commonMethods,
+    public UserLoginServiceImpl (UserMstRepository userMstRepository, ExtractUserId extractUserId,
                                  PasswordEncoder passwordEncoder, JwtUtil jwtUtil) {
         this.userRepository = userMstRepository;
         this.passwordEncoder = passwordEncoder;
         this.jwtUtil = jwtUtil;
-        this.commonMethods = commonMethods;
+        this.extractUserId = extractUserId;
     }
 
     @Override
@@ -53,8 +54,10 @@ public class UserLoginServiceImpl implements UserLoginService {
         }
 
         String token = authHeader.substring(7);
-        String userId = commonMethods.extractUserId(token);
+        String userId = extractUserId.extractUserId(token);
         UserMst user = this.userRepository.findById(userId).orElseThrow();
-        return ResponseHandler.success(user, "Success", "200");
+        RetrieveUserProfileResultModel resultModel = new RetrieveUserProfileResultModel(user.getId(), user.getFirstName(), user.getLastName(),
+                user.getRole().getId(), user.getRole().getRole(), user.getEmailId());
+        return ResponseHandler.success(resultModel, "Success", "200");
     }
 }
