@@ -21,13 +21,12 @@ public class UserManagementController {
         this.userManagementFacade = userManagementFacade;
     }
 
-    @PreAuthorize("hasRole('Admin')")
     @PostMapping("/register")
     public ResponseEntity<?> registerUser(@Valid @RequestBody RegisterUserRequestBody requestBody) {
         return this.userManagementFacade.facadeEntryForRegisterUser( requestBody);
     }
 
-    @PreAuthorize("hasRole('SUPER_ADMIN')")
+    @PreAuthorize("hasAuthority('USER_MANAGEMENT_READ')")
     @PostMapping("/get-users")
     public ResponseEntity<?> retrieveUsers(@RequestBody RetrieveUsersRequestBody requestBody) {
         return this.userManagementFacade.facadeEntryPointForRetrieveUsers(requestBody);
