@@ -3,6 +3,7 @@ package com.example.demo.utils.globalExceptionHandler;
 import com.example.demo.utils.response.ResponseHandler;
 import jakarta.validation.ValidationException;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authorization.AuthorizationDeniedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -33,5 +34,9 @@ public class GlobalExceptionHandler {
         ex.printStackTrace();
         return ResponseHandler.error(ex.getMessage(), "Internal Server Error", "500");
     }
-}
+
+    @ExceptionHandler(AuthorizationDeniedException.class)
+    public ResponseEntity<?> handleAuthorizationDeniedException(AuthorizationDeniedException ex) {
+        return ResponseHandler.error(ex.getMessage(), "Forbidden", "403");
+    }}
 
