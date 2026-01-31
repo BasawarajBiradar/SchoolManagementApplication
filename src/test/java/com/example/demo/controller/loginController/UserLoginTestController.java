@@ -1,5 +1,6 @@
 package com.example.demo.controller.loginController;
 
+import com.example.demo.facade.login.UserLoginFacade;
 import com.example.demo.model.login.LoginRequestRequestModel;
 import com.example.demo.repository.userManagement.RoleMstRepository;
 import com.example.demo.security.JwtUtil;
@@ -18,11 +19,15 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import static org.mockito.Mockito.*;
 
-@WebMvcTest(UserLoginTestController.class)
+@WebMvcTest(UserLoginController.class)
 public class UserLoginTestController {
 
     @Autowired
     private MockMvc mockMvc;
+
+
+    @MockBean
+    UserLoginFacade userLoginFacade;
 
     @MockBean
     private UserLoginService authService;
@@ -32,6 +37,7 @@ public class UserLoginTestController {
 
     @MockBean
     private RoleMstRepository roleMstRepository;
+
 
     @Test
     void shouldReturnValidTokenIfLoginIsSuccessful() throws Exception{
