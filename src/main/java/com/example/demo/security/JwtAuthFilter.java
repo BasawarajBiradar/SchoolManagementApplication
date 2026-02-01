@@ -1,8 +1,8 @@
 package com.example.demo.security;
 
-import com.example.demo.entity.userManagement.Permissions;
-import com.example.demo.entity.userManagement.RoleMst;
-import com.example.demo.repository.userManagement.RoleMstRepository;
+import com.example.demo.entity.user_management.Permissions;
+import com.example.demo.entity.user_management.RoleMst;
+import com.example.demo.repository.user_management.RoleMstRepository;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

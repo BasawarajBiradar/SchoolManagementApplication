@@ -1,13 +1,13 @@
 package com.example.demo.service.login.impl;
 
-import com.example.demo.entity.userManagement.UserMst;
+import com.example.demo.entity.user_management.UserMst;
 import com.example.demo.model.login.LoginRequestRequestModel;
-import com.example.demo.model.login.retrieveUserProfile.RetrieveUserProfileRequestRequestModel;
-import com.example.demo.model.login.retrieveUserProfile.RetrieveUserProfileResultModel;
-import com.example.demo.repository.userManagement.UserMstRepository;
+import com.example.demo.model.login.retrieve_user_profile.RetrieveUserProfileRequestRequestModel;
+import com.example.demo.model.login.retrieve_user_profile.RetrieveUserProfileResultModel;
+import com.example.demo.repository.user_management.UserMstRepository;
 import com.example.demo.security.JwtUtil;
 import com.example.demo.service.login.UserLoginService;
-import com.example.demo.utils.commonMethods.ExtractUserId;
+import com.example.demo.utils.common_methods.ExtractUserId;
 import com.example.demo.utils.response.ResponseHandler;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.ResponseEntity;

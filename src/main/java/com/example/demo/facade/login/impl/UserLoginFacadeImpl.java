@@ -2,7 +2,7 @@ package com.example.demo.facade.login.impl;
 
 import com.example.demo.facade.login.UserLoginFacade;
 import com.example.demo.model.login.LoginRequestRequestModel;
-import com.example.demo.model.login.retrieveUserProfile.RetrieveUserProfileRequestRequestModel;
+import com.example.demo.model.login.retrieve_user_profile.RetrieveUserProfileRequestRequestModel;
 import com.example.demo.service.login.UserLoginService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.ResponseEntity;
