@@ -8,5 +8,5 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class RetrieveUsersRequestBody {
-    private Integer userId;
+    private String userId;
 }

@@ -4,5 +4,5 @@ import java.util.List;
 
 public interface UserMstCustomRepository {
 
-    List<Object[]> retrieveUsersData(Integer userId);
+    List<Object[]> retrieveUsersData(String userId);
 }

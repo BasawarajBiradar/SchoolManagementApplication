@@ -15,7 +15,7 @@ public class UserMstCustomRepositoryImpl implements UserMstCustomRepository {
     private EntityManager em;
 
     @Override
-    public List<Object[]> retrieveUsersData(Integer userId) {
+    public List<Object[]> retrieveUsersData(String userId) {
         StringBuilder sql = new StringBuilder();
         sql.append("SELECT user_name, password, role.role, email_id, created_on, ")
                         .append("created_by, last_updated_on, last_updated_by, active_status ");
