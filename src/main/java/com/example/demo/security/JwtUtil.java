@@ -13,7 +13,7 @@ public class JwtUtil {
     public JwtUtil(JwtKeyProvider keyProvider) {
         this.key = keyProvider.getKey();
     }
-    private final long EXPIRATION_TIME = 86400000; // 1 day
+    private static final long EXPIRATION_TIME = 86400000; // 1 day
 
     public String generateToken(String username, String role, String userId) {
         return Jwts.builder()

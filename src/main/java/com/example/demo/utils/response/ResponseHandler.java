@@ -4,6 +4,8 @@ import org.springframework.http.ResponseEntity;
 
 public class ResponseHandler {
 
+    private ResponseHandler() {}
+
     public static <T> ResponseEntity<ApiResponse<T>> success(T data, String message, String code) {
         return ResponseEntity
                 .status(Integer.parseInt(code))

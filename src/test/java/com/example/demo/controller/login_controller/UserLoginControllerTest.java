@@ -5,15 +5,17 @@ import com.example.demo.model.login.LoginRequestRequestModel;
 import com.example.demo.repository.user_management.RoleMstRepository;
 import com.example.demo.security.JwtUtil;
 import com.example.demo.service.login.UserLoginService;
-import com.example.demo.utils.response.ResponseHandler;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.test.web.servlet.MockMvc;
+
+import java.util.HashMap;
+import java.util.Map;
+
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -43,14 +45,15 @@ import static org.mockito.Mockito.*;
 
     @Test
     void shouldReturnValidTokenIfLoginIsSuccessful() throws Exception{
-        ResponseEntity fakeToken = ResponseHandler.success("fake_token.for.testng", "Success", "200");
+        Map<String, String> fakeToken = new HashMap<>();
+        fakeToken.put("Token", "fake_token.for.testng");
         when(userLoginFacade.facadeEntryPointForLogin(new LoginRequestRequestModel("admin", "admin@123")))
                 .thenReturn(fakeToken);
 
         mockMvc.perform(post("/api/login")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("{\"username\":\"admin\",\"password\":\"admin@123\"}"))
-                .andExpect(status().isOk()).andExpect(jsonPath("$.data").value("fake_token.for.testng"));
+                .andExpect(status().isOk()).andExpect(jsonPath("$.data").value(fakeToken));
     }
 
 }

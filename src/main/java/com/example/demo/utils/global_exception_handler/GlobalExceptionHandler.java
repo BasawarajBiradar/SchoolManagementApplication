@@ -1,5 +1,6 @@
 package com.example.demo.utils.global_exception_handler;
 
+import com.example.demo.utils.response.ApiResponse;
 import com.example.demo.utils.response.ResponseHandler;
 import jakarta.validation.ValidationException;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +15,7 @@ import java.util.List;
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<?> handleValidationErrors(MethodArgumentNotValidException ex) {
+    public ResponseEntity<ApiResponse<List<String>>> handleValidationErrors(MethodArgumentNotValidException ex) {
         List<String> errors = ex.getBindingResult()
                 .getFieldErrors()
                 .stream()
@@ -25,18 +26,18 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(ValidationException.class)
-    public ResponseEntity<?> handleValidationErrors(ValidationException ex) {
+    public ResponseEntity<ApiResponse<String>> handleValidationErrors(ValidationException ex) {
         return ResponseHandler.error(ex.getMessage(), "ValidationError", "400");
     }
 
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<?> handleGenericException(Exception ex) {
+    public ResponseEntity<ApiResponse<String>> handleGenericException(Exception ex) {
         ex.printStackTrace();
         return ResponseHandler.error(ex.getMessage(), "Internal Server Error", "500");
     }
 
     @ExceptionHandler(AuthorizationDeniedException.class)
-    public ResponseEntity<?> handleAuthorizationDeniedException(AuthorizationDeniedException ex) {
+    public ResponseEntity<ApiResponse<String>> handleAuthorizationDeniedException(AuthorizationDeniedException ex) {
         return ResponseHandler.error(ex.getMessage(), "Forbidden", "403");
     }}
 

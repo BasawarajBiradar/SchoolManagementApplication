@@ -2,11 +2,13 @@ package com.example.demo.service.login;
 
 import com.example.demo.model.login.LoginRequestRequestModel;
 import com.example.demo.model.login.retrieve_user_profile.RetrieveUserProfileRequestRequestModel;
+import com.example.demo.model.login.retrieve_user_profile.RetrieveUserProfileResultModel;
 import jakarta.servlet.http.HttpServletRequest;
-import org.springframework.http.ResponseEntity;
+
+import java.util.Map;
 
 public interface UserLoginService {
-    ResponseEntity<?> serviceEntryPointForLogin(LoginRequestRequestModel request);
+    Map<String, String> serviceEntryPointForLogin(LoginRequestRequestModel request);
 
-    ResponseEntity<?> serviceEntryPointForRetrieveUserProfileData(HttpServletRequest request, RetrieveUserProfileRequestRequestModel requestModel);
+    RetrieveUserProfileResultModel serviceEntryPointForRetrieveUserProfileData(HttpServletRequest request, RetrieveUserProfileRequestRequestModel requestModel);
 }

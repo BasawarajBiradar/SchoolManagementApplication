@@ -6,17 +6,16 @@ import com.example.demo.model.admin.user_management.retrieve_user.RetrieveUsersR
 import com.example.demo.repository.user_management.RoleMstRepository;
 import com.example.demo.repository.user_management.UserMstRepository;
 import com.example.demo.security.JwtUtil;
-import com.example.demo.service.adminService.user_management.UserManagementService;
-import com.example.demo.utils.response.ResponseHandler;
+import com.example.demo.service.admin_service.user_management.UserManagementService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.mockito.Mockito.*;
@@ -50,11 +49,10 @@ import org.springframework.security.test.context.support.WithMockUser;
     @Test
     @WithMockUser(username = "admin", roles = "ADMIN")
     void shouldReturnListOfUsers() throws Exception{
-        RetrieveUsersResultModel user = new RetrieveUsersResultModel();
-        user.setUserName("basawaraj.biradar");
-        user.setRole("ADMIN");
-        ResponseEntity result = ResponseHandler.success(List.of(user), "Success", "200");
-
+        List<RetrieveUsersResultModel> result = new ArrayList<>();
+        RetrieveUsersResultModel model = new RetrieveUsersResultModel();
+        model.setUserName("basawaraj.biradar");
+        model.setRole("ADMIN");
         when(userManagementFacade.facadeEntryPointForRetrieveUsers(any(RetrieveUsersRequestBody.class)))
                 .thenReturn(result);
 

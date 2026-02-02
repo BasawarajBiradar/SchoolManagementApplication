@@ -1,4 +1,4 @@
-package com.example.demo.facade.admin_facade;
+package com.example.demo.service.admin_service.user_management;
 
 import com.example.demo.model.admin.user_management.register_user.RegisterUserRequestBody;
 import com.example.demo.model.admin.user_management.retrieve_user.RetrieveUsersRequestBody;
@@ -6,9 +6,10 @@ import com.example.demo.model.admin.user_management.retrieve_user.RetrieveUsersR
 
 import java.util.List;
 
-public interface UserManagementFacade {
+public interface UserManagementService {
 
-    String facadeEntryForRegisterUser(RegisterUserRequestBody requestBody);
+    String serviceEntryPointForRegisterUser(RegisterUserRequestBody requestBody);
 
-    List<RetrieveUsersResultModel> facadeEntryPointForRetrieveUsers(RetrieveUsersRequestBody requestBody);
+    List<RetrieveUsersResultModel> serviceEntryPointForRetrieveUsers(RetrieveUsersRequestBody requestBody);
 }
+
