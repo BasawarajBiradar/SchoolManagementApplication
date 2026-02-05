@@ -8,16 +8,14 @@ import com.example.demo.utils.response.ApiResponse;
 import com.example.demo.utils.response.ResponseHandler;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
 
 @RestController
 @RequestMapping("/api")
+@CrossOrigin
 public class UserLoginController {
 
     private final UserLoginFacade userLoginFacade;
